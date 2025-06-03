@@ -53,9 +53,9 @@ public class EmployeesController(IEmployeeService service) : Controller
 
     [HttpGet("details/{id}")]
     [TypeFilter(typeof(MyLogTypeFilterAttribute))]
-    public IActionResult Details(int id)
+    public async Task<IActionResult> Details(int id)
     {
-        var model = service.GetById(id);
+        var model = await service.GetByIdAsync(id);
 
         DetailsVM viewModel = new()
         {
